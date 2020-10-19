@@ -1,0 +1,52 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Cliente',
+    typeNamePlural: 'Clientes',
+    title: {
+        type: #STANDARD,
+        value: 'NombreCompleto'
+    },
+    description: {
+        type: #STANDARD,
+        value: 'Idcliente'
+    },
+    imageUrl: 'Imagen'
+}
+annotate view Z_B_CLIENTES_MQ_L with
+{
+  @UI.facet: [{id: 'DetallesClientes',
+  label: 'Cliente',
+  type: #COLLECTION,
+  position: 10
+   },
+   {id: 'Cliente',
+   parentId: 'DetallesClientes',
+   label: 'Detalles',
+   type: #FIELDGROUP_REFERENCE,
+   targetQualifier: 'DetallesClientes',
+   position: 10 }
+   ]
+  @UI.lineItem: [{position: 10,
+  importance: #HIGH }]
+  @UI.fieldGroup: [{qualifier: 'DetallesClientes',
+                    position: 10 }]
+  Idcliente;
+  //  //Z_B_CLIENTES_MQ_L
+  //  Idlibro;
+  //  Idcliente;
+  @UI.lineItem: [{position: 20,
+   importance: #HIGH }]
+  @UI.fieldGroup: [{qualifier: 'DetallesClientes',
+                    position: 20 }]
+  Acceso;
+
+  //  Nombre;
+  //  Apellidos;
+    @UI.lineItem: [{position: 30,
+   importance: #HIGH }]
+   @UI.fieldGroup: [{qualifier: 'DetallesClientes',
+                     position: 30 }]
+    Email;
+  //  Imagen;
+  //  NombreCompleto;
+}

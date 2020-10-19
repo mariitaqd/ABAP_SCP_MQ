@@ -1,0 +1,83 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Libro',
+    typeNamePlural: 'Libros',
+    title: {
+        type: #STANDARD,
+        value: 'Titulo'
+
+    },
+    description: {
+        type: #STANDARD,
+        value: 'Titulo'
+    },
+   imageUrl: 'imagen'
+}
+annotate view z_b_libros_mq_l with
+{
+  @UI:{
+  facet: [{ id: 'DetallesLibro',
+  label: 'Detalle de Libro',
+  type: #COLLECTION,
+  position: 10  },
+  { id: 'Libro',
+  parentId: 'DetallesLibro',
+  label: 'Detalles',
+  type: #FIELDGROUP_REFERENCE,
+  targetQualifier: 'DetallesLibro',
+  position: 10},
+  { id: 'Compradores',
+  label: 'Compradores',
+  type: #LINEITEM_REFERENCE,
+  targetElement: '_clientes',
+  position: 30}],
+  fieldGroup: [{ qualifier: 'DetallesLibro',
+  position: 30 }]}
+
+  Idlibro;
+
+  @UI.lineItem: [{ position: 10,
+                   importance: #HIGH }]
+  @UI.selectionField: [{position: 10 }]
+  Titulo;
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.9
+  @Search.ranking: #HIGH
+  @UI.selectionField: [{position: 40 }]
+  Editorial;
+  @UI.lineItem: [{position: 20,
+                   importance: #HIGH }]
+  Autor;
+  
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'Z_B_CATEG_MQ_L',
+                                                 element: 'Descripcion'}
+   }]
+  @UI.lineItem: [{position: 30,
+               importance: #HIGH }]
+  Categoria;
+
+  @UI.lineItem: [{position: 40,
+                    importance: #HIGH }]
+  Formato;
+  //  Idioma;
+  @UI.lineItem: [{position: 50,
+                    importance: #HIGH }]
+
+  paginas;
+  @UI.lineItem: [{position: 60,
+                   importance: #HIGH }]
+
+  Precio;
+  @UI.lineItem: [{position: 70,
+                     importance: #HIGH,
+                     value: 'Text',
+                     criticality: 'Ventas' }]
+  Ventas;
+  //  MOneda;
+
+  //  imagen;
+  @UI.lineItem: [{position: 80,
+                    importance: #HIGH }]
+
+  _clientes;
+}
